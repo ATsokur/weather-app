@@ -1,0 +1,5 @@
+<div *ngIf="(weatherData$ | async) as weatherDataObs">
+  <p>Temperature: {{weatherDataObs.current.temperature_2m}}</p>
+</div>
+
+

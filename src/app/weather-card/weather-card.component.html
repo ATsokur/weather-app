@@ -1,5 +1,14 @@
 <div *ngIf="(weatherData$ | async) as weatherDataObs">
-  <p>Temperature: {{weatherDataObs.current.temperature_2m}}</p>
+  <p>Time: {{weatherDataObs.current.time}}</p>
+  <p>Temperature (2m): {{weatherDataObs.current.temperature_2m}}&#8451;</p>
+  <p>Relative Humidity (2m): {{weatherDataObs.current.relative_humidity_2m}}%</p>
+  <p>Apparent Temperature: {{weatherDataObs.current.apparent_temperature}}&#8451;</p>
+  <p *ngIf="weatherDataObs.current.is_day === 1; then thenBlockDay else elseBlockNight"></p>
+  <p><ng-template #thenBlockDay>Is Day: Day</ng-template></p>
+  <p><ng-template #elseBlockNight>Is Day: Night</ng-template></p>
+  <p>Wind Speed: {{weatherDataObs.current.wind_speed_10m}} m/s</p>
 </div>
+
+
 
 

@@ -1,14 +1,30 @@
-<div *ngIf="(weatherData$ | async) as weatherDataObs">
-  <p>Time: {{weatherDataObs.current.time}}</p>
-  <p>Temperature (2m): {{weatherDataObs.current.temperature_2m}}&#8451;</p>
-  <p>Relative Humidity (2m): {{weatherDataObs.current.relative_humidity_2m}}%</p>
-  <p>Apparent Temperature: {{weatherDataObs.current.apparent_temperature}}&#8451;</p>
-  <p *ngIf="weatherDataObs.current.is_day === 1; then thenBlockDay else elseBlockNight"></p>
-  <p><ng-template #thenBlockDay>Is Day: Day</ng-template></p>
-  <p><ng-template #elseBlockNight>Is Day: Night</ng-template></p>
-  <p>Wind Speed: {{weatherDataObs.current.wind_speed_10m}} m/s</p>
-</div>
+<mat-card class="weather__card" appearance="outlined" *ngIf="(weatherData$ | async) as weatherDataObs">
+  <mat-card-header class="weather__card__header" >
+    <mat-card-title-group>
+      <mat-card-title>Погода в городе {{city.name}}</mat-card-title>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="weather__card__content">
+    <p>Температура (2м): {{weatherDataObs.current.temperature_2m}}&#8451;</p>
+    <p>Относительная влажность (2м): {{weatherDataObs.current.relative_humidity_2m}}%</p>
+    <p>Ощущаемая температура: {{weatherDataObs.current.apparent_temperature}}&#8451;</p>
+    <p *ngIf="weatherDataObs.current.is_day === 1; then thenBlockDay else elseBlockNight"></p>
+    <p><ng-template #thenBlockDay>День</ng-template></p>
+    <p><ng-template #elseBlockNight>Ночь</ng-template></p>
+    <p>Скорость ветра: {{weatherDataObs.current.wind_speed_10m}} м/с</p>
 
-
+    <form>
+      <h4>Выберите город</h4>
+      <mat-form-field>
+        <mat-label>Города</mat-label>
+        <mat-select [(ngModel)]="city" name="city" (ngModelChange)="updateParams()">
+          @for (city of cities; track city) {
+            <mat-option [value]="city">{{city.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+    </mat-card-content>
+</mat-card>
 
 

@@ -1,0 +1,12 @@
+.weather__card {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 35%;
+  border-radius: 30px;
+  box-shadow: 6px 6px 1px 0.5px rgba(0, 0, 255, .2);
+}
+
+.weather__card__header {
+   margin: 0 auto;
+}
+

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { WEATHER_DEFAULT_PARAMS, WeatherDataService } from '../services/weather-data.service';
+import { CITIES, WEATHER_DEFAULT, WEATHER_DEFAULT_PARAMS, WeatherDataService } from '../services/weather-data.service';
 import { Weather } from '../interfaces/weather';
-import { Observable, startWith, Subject, switchMap, } from 'rxjs';
+import { Observable, startWith, Subject, switchMap, tap, } from 'rxjs';
 import { WeatherParams } from '../interfaces/weather-params';
-
+import { City } from '../interfaces/city';
 
 
 @Component({
@@ -12,29 +12,32 @@ import { WeatherParams } from '../interfaces/weather-params';
   styleUrl: './weather-card.component.css'
 })
 export class WeatherCardComponent {
+  public city: City = CITIES[0] as City;
+  public cities: City[] = CITIES;
+
   public weatherParams$: Subject<WeatherParams> = new Subject();
   public weatherData$: Observable<Weather> = this.weatherParams$.pipe(
-    startWith(WEATHER_DEFAULT_PARAMS),
+    startWith((new WEATHER_DEFAULT(this.city.latitude, this.city.longitude)).getDefaultParams()),
+    tap((r) => {
+      console.log('params are: ', r);
+    }),
     switchMap((params) => {
       return this.weatherDataService.getWeatherData(params)
     })
   );
 
-  public weatherData: Weather;
+
 
 
   constructor(private weatherDataService: WeatherDataService) {
   }
 
-
   updateParams() {
     const params: WeatherParams = {
-      latitude: '',
-      longitude: '',
+      latitude: this.city.latitude, // ''
+      longitude: this.city.longitude, // ''
       timezone: WEATHER_DEFAULT_PARAMS.timezone,
       current: {
-        // time: WEATHER_DEFAULT_PARAMS.current.time,
-        // interval: WEATHER_DEFAULT_PARAMS.current.interval,
         temperature: WEATHER_DEFAULT_PARAMS.current.temperature,
         relative_humidity: WEATHER_DEFAULT_PARAMS.current.relative_humidity,
         apparent_temperature: WEATHER_DEFAULT_PARAMS.current.apparent_temperature,
@@ -43,7 +46,6 @@ export class WeatherCardComponent {
       },
     };
     this.weatherParams$.next(params);
-
   }
 
 }

@@ -29,8 +29,7 @@ export class WeatherCardComponent {
 
 
 
-  constructor(private weatherDataService: WeatherDataService) {
-  }
+  constructor(private weatherDataService: WeatherDataService) { }
 
   updateParams() {
     const params: WeatherParams = {

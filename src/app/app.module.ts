@@ -11,11 +11,16 @@ import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { WeatherCardComponent } from './weather-card/weather-card.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { WeatherConfigurationsComponent } from './weather-configurations/weather-configurations.component';
+import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-welcome-screen.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherCardComponent,
+    WeatherConfigurationsComponent,
+    WeatherWelcomeScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

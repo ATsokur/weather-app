@@ -1,7 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WeatherCardComponent } from './weather-card/weather-card.component';
+import { WeatherConfigurationsComponent } from './weather-configurations/weather-configurations.component';
+import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-welcome-screen.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'welcome',
+    component: WeatherWelcomeScreenComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full',
+  },
+  {
+    path: 'weather',
+    component: WeatherCardComponent,
+  },
+  {
+    path: 'configurations',
+    component: WeatherConfigurationsComponent,
+  }
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

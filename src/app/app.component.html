@@ -1,3 +1,9 @@
-<app-weather-card></app-weather-card>
+<h1>{{title}}</h1>
+<nav>
+  <a routerLink="/welcome" routerLinkActive="active-link">Домой</a>
+  <a routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
+  <a routerLink="/weather" routerLinkActive="active-link">Погода</a>
+</nav>
+<router-outlet></router-outlet>
 
 

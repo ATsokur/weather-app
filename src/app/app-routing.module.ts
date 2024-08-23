@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WeatherCardComponent } from './weather-card/weather-card.component';
+import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { WeatherConfigurationsComponent } from './weather-configurations/weather-configurations.component';
 import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-welcome-screen.component';
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'weather',
-    component: WeatherCardComponent,
+    component: WeatherViewComponent,
   },
   {
     path: 'configurations',

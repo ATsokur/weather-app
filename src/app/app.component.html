@@ -1,9 +1,17 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/welcome" routerLinkActive="active-link">Домой</a>
-  <a routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
-  <a routerLink="/weather" routerLinkActive="active-link">Погода</a>
-</nav>
-<router-outlet></router-outlet>
-
-
+<div class="container">
+  <h1>{{title}}</h1>
+  <nav class="navigation">
+    <ul class="nav-bar">
+      <li class="navigation-button">
+        <a mat-button routerLink="/welcome" routerLinkActive="active-link">Домой</a>
+      </li>
+      <li class="navigation-button">
+        <a mat-button routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
+      </li>
+      <li class="navigation-button">
+        <a mat-button routerLink="/weather" routerLinkActive="active-link">Погода</a>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

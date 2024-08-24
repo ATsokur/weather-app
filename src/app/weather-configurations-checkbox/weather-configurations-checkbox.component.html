@@ -1,0 +1,13 @@
+<h4 class="configuration-header">Выберете необходимые настройки:</h4>
+<section class="example-section" [formGroup]="weatherConfig">
+  <p><mat-checkbox class="checked" [color]="color"  formControlName="temperature">Температура (2м)</mat-checkbox></p>
+  <p><mat-checkbox [color]="color"  formControlName="relative_humidity">Относительная влажность (2м)</mat-checkbox></p>
+  <p><mat-checkbox [color]="color"  formControlName="apparent_temperature">Ощущаемая температура</mat-checkbox></p>
+  <p><mat-checkbox [color]="color"  formControlName="is_day">Время суток</mat-checkbox></p>
+  <p><mat-checkbox [color]="color"  formControlName="wind_speed">Скорость ветра</mat-checkbox></p>
+</section>
+
+<section class="example-section" [formGroup]="weatherConfig">
+  <h4>You chose:</h4>
+  {{weatherConfig.value | json}}
+</section>

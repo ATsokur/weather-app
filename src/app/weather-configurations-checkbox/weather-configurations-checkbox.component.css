@@ -1,0 +1,14 @@
+.configuration-header {
+  margin: 20px;
+}
+
+.example-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  width: 75%;
+}
+
+.checked {
+  pointer-events: none;
+}

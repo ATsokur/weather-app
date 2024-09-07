@@ -1,14 +1,34 @@
-.configuration-header {
-  margin: 20px;
+.mat-mdc-checkbox.mat-primary {
+  --mat-checkbox-label-text-color: color:rgb(245, 245, 220, 0.9);
 }
 
-.example-section {
+
+.configuration__section {
   display: flex;
   flex-wrap: wrap;
-  margin: 10px;
   width: 75%;
 }
 
-.checked {
-  pointer-events: none;
+
+/* .mat-mdc-checkbox.configuration__checkbox{
+  color:rgb(245, 245, 220, 0.9);
 }
+
+.mdc-label.mat-checkbox {
+  color:rgb(245, 245, 220, 0.9);
+}
+
+.mdc-label.mat-checkbox.configuration__checkbox {
+  color:rgb(245, 245, 220, 0.9);
+}
+
+
+.mat-internal-form-field .mdc-mat-checkbox.configuration__checkbox {
+  color:rgb(245, 245, 220, 0.9);
+}
+
+ */
+
+
+
+

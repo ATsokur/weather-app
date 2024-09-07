@@ -1,30 +1,37 @@
-<mat-card class="weather__card" appearance="outlined" *ngIf="(weatherData$ | async) as weatherDataObs">
+<mat-card class="weather__card" appearance="outlined">
   <mat-card-header class="weather__card__header" >
     <mat-card-title-group>
-      <mat-card-title>Погода в городе {{city.name}}</mat-card-title>
+      <!-- <mat-card-title>{{title}}</mat-card-title> -->
+      <h3>{{title}}</h3>
     </mat-card-title-group>
   </mat-card-header>
-  <mat-card-content class="weather__card__content">
-    <p>Температура (2м): {{weatherDataObs.current.temperature_2m}}&#8451;</p>
-    <p>Относительная влажность (2м): {{weatherDataObs.current.relative_humidity_2m}}%</p>
-    <p>Ощущаемая температура: {{weatherDataObs.current.apparent_temperature}}&#8451;</p>
-    <p *ngIf="weatherDataObs.current.is_day === 1; then thenBlockDay else elseBlockNight"></p>
-    <p><ng-template #thenBlockDay>День</ng-template></p>
-    <p><ng-template #elseBlockNight>Ночь</ng-template></p>
-    <p>Скорость ветра: {{weatherDataObs.current.wind_speed_10m}} м/с</p>
-
-    <form>
-      <h4>Выберите город</h4>
-      <mat-form-field>
-        <mat-label>Города</mat-label>
-        <mat-select [(ngModel)]="city" name="city" (ngModelChange)="updateParams()">
-          @for (city of cities; track city) {
-            <mat-option [value]="city">{{city.name}}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </form>
+  <mat-card-content  class="weather__card__content">
+    <div *ngIf="title === 'Температура'" class="temperature__container">
+      <p>{{value}}&#8451;</p>
+      <img src="../../assets/temperature.svg" alt="">
+    </div>
+    <div *ngIf="title === 'Относительная влажность'" class="relative__humidity__container">
+      <p>{{value}}%</p>
+      <img src="../../assets/relative_humidity.svg" alt="">
+    </div>
+    <div *ngIf="title === 'Скорость ветра'" class="wind__speed__container">
+      <p>{{value}}м/с</p>
+      <img src="../../assets/wind_speed.svg" alt="">
+    </div>
+    <div *ngIf="title === 'Ощущаемая температура'" class="apparent_temperature__container">
+      <p>{{value}}&#8451;</p>
+      <img src="../../assets/apparent_temperature.svg" alt="">
+    </div>
+    <div class="is__day__container" *ngIf="title === 'Время суток'">
+      <div *ngIf="value === '1'" class="day">
+        <p>{{'День'}}</p>
+        <img src="../../assets/is_day.svg" alt="">
+      </div>
+      <div *ngIf="value === '0'" class="night">
+        <p>{{'Ночь'}}</p>
+        <img src="../../assets/night.svg" alt="">
+      </div>
+    </div>
     </mat-card-content>
 </mat-card>
-
 

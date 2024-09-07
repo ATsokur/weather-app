@@ -1,1 +1,16 @@
-<p>weather-view works!</p>
+<div class="view__cards__container">
+  <form class="select__container">
+  <h4>Выберите город</h4>
+  <mat-form-field >
+    <mat-label >Города</mat-label>
+    <mat-select  [(ngModel)]="city" name="city" (ngModelChange)="updateParams()">
+      @for (city of cities; track city) {
+        <mat-option [value]="city">{{city.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</form>
+  <app-weather-card *ngFor="let card of cards" [title]="card.title" [value]="card.value" [icon]="card.icon"></app-weather-card>
+</div>
+
+

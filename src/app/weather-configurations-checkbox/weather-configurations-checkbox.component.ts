@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { WeatherConfigurationsService } from '../services/weather-configurations.service'
+import { map, Subject, take, takeUntil, tap } from 'rxjs';
+import { WeatherConfigurations } from '../interfaces/weather-configurations';
 
 
 
@@ -9,21 +12,49 @@ import { FormBuilder } from '@angular/forms';
   styleUrl: './weather-configurations-checkbox.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WeatherConfigurationsCheckboxComponent {
-  private readonly _formBuilder = inject(FormBuilder);
+export class WeatherConfigurationsCheckboxComponent implements OnInit, OnDestroy {
+  private readonly fb = inject(FormBuilder);
+  private readonly weatherConfigurationsService = inject(WeatherConfigurationsService)
+
 
 
   @Input() color: string = 'primary'
 
 
-  readonly weatherConfig = this._formBuilder.group({
-    temperature: true,
-    relative_humidity: false,
-    apparent_temperature: false,
-    is_day: false,
-    wind_speed: false
-  });
+  public form: FormGroup;
+  private destroyed$: Subject<void> = new Subject();
 
+
+  weatherConfig: WeatherConfigurations;
+
+
+  constructor() { }
+
+  ngOnInit() {
+    this.weatherConfigurationsService.weatherConfigSource.pipe(
+      take(1),
+      tap((config) => {
+        this.initForm(config);
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe(weatherConfig => this.weatherConfig = weatherConfig);
+
+    this.form.valueChanges.pipe(
+      map(() => this.form.getRawValue()),
+      takeUntil(this.destroyed$),
+    ).subscribe((value) => {
+      this.weatherConfigurationsService.changeConfiguration(value);
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+  }
+
+  public initForm(formConfig: WeatherConfigurations) {
+    this.form = this.fb.group(formConfig);
+    this.form.controls['temperature']?.disable();
+  }
 }
 
 

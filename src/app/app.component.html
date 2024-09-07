@@ -1,17 +1,20 @@
 <div class="container">
-  <h1>{{title}}</h1>
+  <!-- <h1>{{title}}</h1> -->
   <nav class="navigation">
-    <ul class="nav-bar">
-      <li class="navigation-button">
-        <a mat-button routerLink="/welcome" routerLinkActive="active-link">Домой</a>
+    <ul class="nav__bar">
+      <li class="navigation__button">
+        <a class="nav__link" mat-button routerLink="/welcome" routerLinkActive="active-link">Главная</a>
       </li>
-      <li class="navigation-button">
-        <a mat-button routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
+      <li class="navigation__button" >
+        <a class="nav__link" mat-button routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
       </li>
-      <li class="navigation-button">
-        <a mat-button routerLink="/weather" routerLinkActive="active-link">Погода</a>
+      <li class="navigation__button">
+        <a class="nav__link" mat-button routerLink="/weather" routerLinkActive="active-link">Погода</a>
       </li>
     </ul>
   </nav>
-  <router-outlet></router-outlet>
+  <div class="router__outlet__container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+

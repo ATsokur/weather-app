@@ -1,0 +1,185 @@
+@use '@angular/material/' as mat;
+
+@include mat.core();
+
+// $custom-primary-palette: mat.m2-define-palette(mat.$spring-green-palette, 50);
+
+
+$custom-primary-palette: (
+  50: #e6e2d2,
+  100: #e7e4cf,
+  200: #e7e4ce,
+  300: #cac5af,
+  400: #BEB9A3,
+  500: #b4b09c,
+  600: #a7a28f,
+  700: #9C9886,
+  800: #7A7769,
+  900: #545248,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  )
+);
+
+
+$custom-accent-palette: (
+  50: #fefefb,
+  100: #fcfcf5,
+  200: #fafaee,
+  300: #f8f8e7,
+  400: #f7f7e1,
+  500: #f5f5dc,
+  600: #f4f4d8,
+  700: #f2f2d3,
+  800: #f0f0ce,
+  900: #eeeec5,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  )
+);
+
+
+
+
+
+
+
+
+// $custom-primary-palette: (
+//   50: #EFEBE9,
+//   100:#D7CCC8,
+//   200:#BCAAA4,
+//   300:#A1887F,
+//   400:#8D6E63,
+//   500:#795548,
+//   600:#6D4C41,
+//   700:#5D4037,
+//   800:#4E342E,
+//   900:#3E2723,
+//   contrast: (
+//     50: #000,
+//     100: #000,
+//     200: #000,
+//     300: #fff,
+//     400: #fff,
+//     500: #fff,
+//     600: #fff,
+//     700: #fff,
+//     800: #fff,
+//     900: #fff,
+//   )
+// );
+
+
+
+
+
+
+$custom-typography: mat.m2-define-typography-config($font-family: "Roboto, sans-serif");
+$custom-primary: mat.m2-define-palette($custom-primary-palette, 700);
+$custom-accent: mat.m2-define-palette($custom-accent-palette, 700);
+$custom-warn: mat.m2-define-palette(mat.$m2-indigo-palette);
+
+$custom-theme: mat.m2-define-dark-theme((
+  color: (
+    theme-type: dark,
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  typography: $custom-typography,
+  density: 0
+));
+
+// $sg-app-primary: mat-palette($mat-indigo);
+// $sg-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// $sg-app-theme: mat-light-theme($sg-app-primary, $sg-app-accent);
+
+
+// @function mat-light-theme-foreground($color) {
+//   @return (
+//       base:              $color,
+//       divider:           $white-12-opacity,
+//       dividers:          $white-12-opacity,
+//       disabled:          rgba($color, 0.38),
+//       disabled-button:   rgba($color, 0.38),
+//       disabled-text:     rgba($color, 0.38),
+//       hint-text:         rgba($color, 0.38),
+//       secondary-text:    rgba($color, 0.54),
+//       icon:              rgba($color, 0.54),
+//       icons:             rgba($color, 0.54),
+//       text:              rgba($color, 0.87),
+//       slider-off:        rgba($color, 0.26),
+//       slider-off-active: rgba($color, 0.38),
+//       slider-min:        rgba($color, 0.38)
+//   );
+// };
+
+// $white-foreground: mat-light-theme-foreground(white);
+// $my-app-theme-custom: map-merge($sg-app-theme, (foreground: $white-foreground));
+
+// @include angular-material-theme($my-app-theme-custom);
+
+
+// @function mat-light-theme-foreground($color) {
+//   @return (
+//       base:              $color,
+//       disabled:          rgba($color, 0.38),
+//       disabled-button:   rgba($color, 0.38),
+//       disabled-text:     rgba($color, 0.38),
+//       hint-text:         rgba($color, 0.38),
+//       secondary-text:    rgba($color, 0.54),
+//       icon:              rgba($color, 0.54),
+//       icons:             rgba($color, 0.54),
+//       text:              rgba($color, 0.87),
+//       slider-off:        rgba($color, 0.26),
+//       slider-off-active: rgba($color, 0.38),
+//       slider-min:        rgba($color, 0.38)
+//   );
+// };
+
+// $white-foreground: mat-light-theme-foreground(black);
+// $my-app-theme-custom: map-merge($custom-theme, (foreground: $white-foreground));
+
+// rgb(245, 245, 220, 0.9)
+
+
+
+/*
+html {
+  // @include mat.progress-spinner-color($my-theme);
+  // @include mat.all-component-themes($my-theme);
+  @include mat.all-component-themes($custom-theme);
+  // @include mat.all-component-themes($custom-theme);
+  // @include mat.checkbox-color($custom-theme);
+}
+  */
+
+  // @include mat.all-component-themes($custom-theme); рабочая
+  // @include mat.all-component-themes($my-app-theme-custom); рабочая
+  // @include mat.angular-material-theme($my-app-theme-custom);
+  // @include mat.core-theme($my-app-theme-custom);
+  @include mat.all-component-themes($custom-theme);
+  // @include mat.all-component-themes($custom-theme, accent);
+  // @include mat.select-color($custom-theme, warn);
+
+

@@ -8,31 +8,22 @@
   min-width: 305px;
 }
 
-::ng-deep .mat-mdc-text-field-wrapper {
+:host::ng-deep .mat-mdc-text-field-wrapper {
   --mdc-filled-text-field-container-color: rgb(112, 141, 171);
-    color: rgb(245, 245, 220, 0.9);
-    color: var(--mdc-filled-text-field-label-text-color, rgb(245, 245, 220, 0.9));
 }
 
-::ng-deep .mdc-text-field--filled.mdc-floating-label {
-    color: rgb(245, 245, 220, 0.9);
+:host::ng-deep .mat-mdc-select-min-line {
+  color: rgb(245, 245, 220, 0.9);
 }
 
 
-::ng-deep .mat-primary.mdc-menu-suface  {
-   --mat-select-panel-background-color: rgb(112, 141, 171);
-  background-color: var(--mdc-theme-surface, rgb(112, 141, 171));
-  background-color: var(--mat-select-panel-background-color, rgb(112, 141, 171))
+.select__city__label {
+  color: rgb(245, 245, 220, 0.6);
 }
 
-::ng-deep div.mat-mdc-select-panel {
-  background-color: var(--mdc-theme-surface, rgb(112, 141, 171));
-  background-color: var(--mat-select-panel-background-color, rgb(112, 141, 171))
+div.mat-mdc-select-panel#mat-select-0-panel {
+  --mat-select-panel-background-color: rgb(112, 141, 171);
 }
 
-::ng-deep .mat-mdc-select-panel {
-  background-color: var(--mdc-theme-surface, rgb(112, 141, 171));
-  background-color: var(--mat-select-panel-background-color, rgb(112, 141, 171))
-}
 
 

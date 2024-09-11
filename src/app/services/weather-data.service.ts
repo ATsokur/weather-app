@@ -18,30 +18,6 @@ export const WEATHER_DEFAULT_PARAMS: WeatherParams = {
   },
 }
 
-export class WEATHER_DEFAULT {
-  constructor(latitude: string, longitude: string) {
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
-
-  public latitude: string;
-  public longitude: string;
-
-  public getDefaultParams() {
-    return {
-      latitude: this.latitude,
-      longitude: this.longitude,
-      timezone: 'auto',
-      current: {
-        temperature: 'temperature_2m',
-        relative_humidity: 'relative_humidity_2m',
-        apparent_temperature: 'apparent_temperature',
-        is_day: 'is_day',
-        wind_speed: 'wind_speed_10m',
-      },
-    }
-  }
-}
 
 export const CITIES: City[] = [
   {
@@ -97,6 +73,33 @@ export const CITIES: City[] = [
 ]
 
 
+export class WEATHER_DEFAULT {
+  constructor(latitude: string, longitude: string) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
+
+  public latitude: string;
+  public longitude: string;
+
+  public getDefaultParams() {
+    return {
+      latitude: this.latitude,
+      longitude: this.longitude,
+      timezone: 'auto',
+      current: {
+        temperature: 'temperature_2m',
+        relative_humidity: 'relative_humidity_2m',
+        apparent_temperature: 'apparent_temperature',
+        is_day: 'is_day',
+        wind_speed: 'wind_speed_10m',
+      },
+    }
+  }
+}
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -105,16 +108,11 @@ export class WeatherDataService {
   private baseUrl: string = 'https://api.open-meteo.com/v1/forecast';
   public city: string = 'Краснодар';
 
-
-
-
   constructor(private http: HttpClient) { }
-
 
   getWeatherData(params: WeatherParams): Observable<Weather> {
     return this.http.get<Weather>(`${this.baseUrl}?latitude=${params.latitude}&longitude=${params.longitude}&current=${params.current.temperature},${params.current.relative_humidity},${params.current.apparent_temperature},${params.current.is_day},${params.current.wind_speed}&timezone=${params.timezone}`);
   }
-
 
 }
 

@@ -17,7 +17,7 @@ export class WeatherConfigurationsComponent implements OnInit, OnDestroy {
   constructor(private weatherConfigurationsService: WeatherConfigurationsService) { }
 
   ngOnInit() {
-    this.subscription = this.weatherConfigurationsService.weatherConfigSource.subscribe(weatherConfig => this.weatherConfig = weatherConfig)
+    this.subscription = this.weatherConfigurationsService.weatherConfigSource$.subscribe(weatherConfig => this.weatherConfig = weatherConfig)
   }
 
   ngOnDestroy() {

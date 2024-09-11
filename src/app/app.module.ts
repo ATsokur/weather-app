@@ -7,6 +7,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 import { AppComponent } from './app.component';
@@ -15,9 +17,9 @@ import { WeatherCardComponent } from './weather-card/weather-card.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { WeatherConfigurationsComponent } from './weather-configurations/weather-configurations.component';
 import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-welcome-screen.component';
-import { MatButtonModule } from '@angular/material/button';
 import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { WeatherConfigurationsCheckboxComponent } from './weather-configurations-checkbox/weather-configurations-checkbox.component';
+
 
 
 
@@ -42,7 +44,8 @@ import { WeatherConfigurationsCheckboxComponent } from './weather-configurations
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonToggleModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

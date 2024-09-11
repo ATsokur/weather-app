@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { WeatherConfigurationsService } from '../services/weather-configurations.service'
 import { map, Subject, take, takeUntil, tap } from 'rxjs';
 import { WeatherConfigurations } from '../interfaces/weather-configurations';
+import { StorageService } from '../services/storage.service';
 
 
 
@@ -14,7 +15,9 @@ import { WeatherConfigurations } from '../interfaces/weather-configurations';
 })
 export class WeatherConfigurationsCheckboxComponent implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
-  private readonly weatherConfigurationsService = inject(WeatherConfigurationsService)
+  private readonly weatherConfigurationsService = inject(WeatherConfigurationsService);
+  private storageService = inject(StorageService);
+
 
 
 
@@ -30,20 +33,29 @@ export class WeatherConfigurationsCheckboxComponent implements OnInit, OnDestroy
 
   constructor() { }
 
+
+
+
   ngOnInit() {
-    this.weatherConfigurationsService.weatherConfigSource.pipe(
+    this.weatherConfigurationsService.weatherConfigSource$.pipe(
       take(1),
       tap((config) => {
         this.initForm(config);
       }),
-      takeUntil(this.destroyed$)
-    ).subscribe(weatherConfig => this.weatherConfig = weatherConfig);
+      takeUntil(this.destroyed$),
+    ).subscribe((weatherConfig) => {
+      this.weatherConfig = weatherConfig;
+      console.log('LocalStorage after refresh or init:', this.storageService.getUserSettings())
+    });
+
 
     this.form.valueChanges.pipe(
       map(() => this.form.getRawValue()),
       takeUntil(this.destroyed$),
     ).subscribe((value) => {
       this.weatherConfigurationsService.changeConfiguration(value);
+      this.storageService.setSettings(value);
+      console.log('LocalStorage value here:', this.storageService.getUserSettings())
     });
   }
 

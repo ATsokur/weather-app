@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WeatherConfigurationsService } from '../services/weather-configurations.service';
 import { combineLatest, Observable, of, startWith, Subject, Subscription, switchMap, tap } from 'rxjs';
-// import { WEATHER_PARAMS_MAP, WeatherConfigurations,} from '../interfaces/weather-configurations';
 import { WeatherCardParams, WeatherConfigurations, WeatherParamsMap } from '../interfaces/weather-configurations';
 import { City } from '../interfaces/city';
 import { CITIES, WEATHER_DEFAULT, WEATHER_DEFAULT_PARAMS, WeatherDataService } from '../services/weather-data.service';
 import { WeatherParams } from '../interfaces/weather-params';
 import { Weather } from '../interfaces/weather';
-import { StorageService } from '../services/storage.service';
+// import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-weather-view',
@@ -48,12 +47,10 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
   public city: City = CITIES[0] as City;
   public cities: City[] = CITIES;
-
   public weatherParams$: Subject<WeatherParams> = new Subject();
+
   public weatherData$: Observable<Weather> = this.weatherParams$.pipe(
     startWith((new WEATHER_DEFAULT(this.city.latitude, this.city.longitude)).getDefaultParams()),
     tap((r) => {
@@ -63,10 +60,6 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
       return this.weatherDataService.getWeatherData(params)
     })
   );
-
-
-
-
 
   updateParams() {
     const params: WeatherParams = {
@@ -81,13 +74,10 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
         wind_speed: WEATHER_DEFAULT_PARAMS.current.wind_speed,
       },
     };
-    this.cards = []; // чтобы не было много карточек (для каждого города свои)
     this.weatherParams$.next(params);
   }
 
-  constructor(private weatherConfigurationsService: WeatherConfigurationsService, private weatherDataService: WeatherDataService,
-    private storageService: StorageService
-  ) { }
+  constructor(private weatherConfigurationsService: WeatherConfigurationsService, private weatherDataService: WeatherDataService,) { }
 
 
   getCardValue(value: string, data: Weather) {
@@ -109,15 +99,15 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.weatherConfigurationsService.weatherConfigSource.pipe(
+    this.subscription = this.weatherConfigurationsService.weatherConfigSource$.pipe(
       switchMap((config) => {
         return combineLatest([of(config), this.weatherData$])
       }),
       tap(([config, data]) => {
         // console.log('config view: ', config);
         // console.log('data view: ', data);
-        console.log('Localstorage works: ', );
-        this.storageService.ngOnInit();
+        // console.log('Localstorage works: ', );
+        const cards = [];
         for (let key in config) {
           if(config[key]) {
             const card  = {
@@ -125,9 +115,11 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
               icon: this.WEATHER_PARAMS_MAP[key as keyof WeatherParamsMap].icon,
               value: this.getCardValue(key, data),
             }
-            this.cards.push(card);
+            cards.push(card);
           }
         }
+
+        this.cards = [...cards];
         console.log('cards: ', this.cards);
       }),
     ).subscribe((weatherConfig) => {
@@ -135,12 +127,9 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
     });
   }
 
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-
 
 }
 

@@ -1,8 +1,8 @@
 <div class="view__cards__container">
   <form class="select__container">
   <h4>Выберите город</h4>
-  <mat-form-field >
-    <mat-label >Города</mat-label>
+  <mat-form-field class="select__city__field">
+    <mat-label class="select__city__label">Города</mat-label>
     <mat-select  [(ngModel)]="city" name="city" (ngModelChange)="updateParams()">
       @for (city of cities; track city) {
         <mat-option [value]="city">{{city.name}}</mat-option>

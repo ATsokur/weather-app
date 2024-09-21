@@ -1,0 +1,6 @@
+<mat-button-toggle-group class="toggle__button__group"
+  multiple
+>
+  <mat-button-toggle class="toggle__button" class="save" value="save" #newItem (click)="toggle()" [checked]="toggled" [disabled]="toggled">{{ toggled ? toggledText : text}}</mat-button-toggle>
+</mat-button-toggle-group>
+

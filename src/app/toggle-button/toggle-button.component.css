@@ -1,0 +1,12 @@
+:host::ng-deep .mat-button-toggle-group-appearance-standard {
+  border: solid 0px;
+  --mat-standard-button-toggle-divider-color: none;
+}
+
+
+:host::ng-deep .mat-button-toggle-label-content {
+  color: rgb(245, 245, 220, 0.9);
+  background-color: rgb(112, 141, 171);
+  border: none;
+}
+

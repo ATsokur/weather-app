@@ -1,26 +1,25 @@
 <mat-card class="weather__card" appearance="outlined">
   <mat-card-header class="weather__card__header" >
     <mat-card-title-group>
-      <!-- <mat-card-title>{{title}}</mat-card-title> -->
       <h3>{{title}}</h3>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content  class="weather__card__content">
     <div *ngIf="title === 'Температура'" class="temperature__container">
       <p>{{value}}&#8451;</p>
-      <img src="../../assets/temperature.svg" alt="">
+      <img [src]="icon" alt="temperature">
     </div>
     <div *ngIf="title === 'Относительная влажность'" class="relative__humidity__container">
       <p>{{value}}%</p>
-      <img src="../../assets/relative_humidity.svg" alt="">
+      <img [src]="icon" alt="relative humidity">
     </div>
     <div *ngIf="title === 'Скорость ветра'" class="wind__speed__container">
       <p>{{value}}м/с</p>
-      <img src="../../assets/wind_speed.svg" alt="">
+      <img [src]="icon" alt="wind speed">
     </div>
     <div *ngIf="title === 'Ощущаемая температура'" class="apparent_temperature__container">
       <p>{{value}}&#8451;</p>
-      <img src="../../assets/apparent_temperature.svg" alt="">
+      <img [src]="icon" alt="apparent temperature">
     </div>
     <div class="is__day__container" *ngIf="title === 'Время суток'">
       <div *ngIf="value === '1'" class="day">

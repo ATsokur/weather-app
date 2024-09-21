@@ -21,51 +21,61 @@ export const WEATHER_DEFAULT_PARAMS: WeatherParams = {
 
 export const CITIES: City[] = [
   {
+    id: '1',
     name: 'Краснодар',
     latitude: '45.0448',
     longitude: '38.976',
   },
   {
+    id: '2',
     name: 'Москва',
     latitude: '51.4111',
     longitude: '39.6028',
   },
   {
+    id: '3',
     name: 'Рим',
     latitude: '41.8919',
     longitude: '12.5113',
   },
   {
+    id: '4',
     name: 'Вашингтон',
     latitude: '38.8951',
     longitude: '-77.0364',
   },
   {
+    id: '5',
     name: 'Токио',
     latitude: '35.6895',
     longitude: '139.6917',
   },
   {
+    id: '6',
     name: 'Анкара',
     latitude: '39.9199',
     longitude: '32.8543',
   },
   {
+    id: '7',
     name: 'Мехико',
     latitude: '19.4285',
     longitude: '-99.1277',
   },
   {
+    id: '8',
     name: 'Минск',
     latitude: '53.9',
     longitude: '27.5667',
   },
   {
+    id: '9',
     name: 'Пхеньян',
     latitude: '39.0339',
     longitude: '125.7543',
   },
   {
+    id: '10',
     name: 'Пекин',
     latitude: '39.9075',
     longitude: '116.3972',

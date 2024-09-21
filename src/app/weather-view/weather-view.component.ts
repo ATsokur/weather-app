@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { WeatherConfigurationsService } from '../services/weather-configurations.service';
 import { combineLatest, Observable, of, startWith, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { WeatherCardParams, WeatherConfigurations, WeatherParamsMap } from '../interfaces/weather-configurations';
@@ -6,7 +6,10 @@ import { City } from '../interfaces/city';
 import { CITIES, WEATHER_DEFAULT, WEATHER_DEFAULT_PARAMS, WeatherDataService } from '../services/weather-data.service';
 import { WeatherParams } from '../interfaces/weather-params';
 import { Weather } from '../interfaces/weather';
-// import { StorageService } from '../services/storage.service';
+import { StorageService } from '../services/storage.service';
+import { FormControl, FormGroup } from '@angular/forms';
+// import { FormControl, FormBuilder, Validators } from '@angular/forms';
+// import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-weather-view',
@@ -18,6 +21,9 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
   weatherData: Weather;
   subscription: Subscription;
   cards: WeatherCardParams[] = [];
+  private weatherConfigurationsService = inject(WeatherConfigurationsService);
+  private weatherDataService = inject(WeatherDataService);
+  private storageService = inject(StorageService);
 
   WEATHER_PARAMS_MAP:  WeatherParamsMap =  {
     temperature: {
@@ -47,24 +53,36 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  public city: City = CITIES[0] as City;
+  public city: City = this.storageService.getUserSelectSettings() ? this.storageService.getUserSelectSettings() : CITIES[0] as City;
+  // public city: City = CITIES[0] as City;
+  // public default: string = CITIES[0]!.name;
+  public default: string = this.city.name;
+  public cityForm: FormGroup;
+  public cityControl: FormControl = new FormControl(null);
+  // public cityControl = new FormControl(null);
+     //  public city: City = CITIES[0] as City;
   public cities: City[] = CITIES;
   public weatherParams$: Subject<WeatherParams> = new Subject();
+  public loading: boolean = false;
+
+  // public cityForm = new FormGroup({
+  //   city: this.cityControl,
+  // });
+  /* test */
+
 
   public weatherData$: Observable<Weather> = this.weatherParams$.pipe(
     startWith((new WEATHER_DEFAULT(this.city.latitude, this.city.longitude)).getDefaultParams()),
-    tap((r) => {
-      console.log('params are: ', r);
-    }),
     switchMap((params) => {
       return this.weatherDataService.getWeatherData(params)
     })
   );
 
+
   updateParams() {
     const params: WeatherParams = {
-      latitude: this.city.latitude, // ''
-      longitude: this.city.longitude, // ''
+      latitude: this.city.latitude,
+      longitude: this.city.longitude,
       timezone: WEATHER_DEFAULT_PARAMS.timezone,
       current: {
         temperature: WEATHER_DEFAULT_PARAMS.current.temperature,
@@ -77,8 +95,20 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
     this.weatherParams$.next(params);
   }
 
-  constructor(private weatherConfigurationsService: WeatherConfigurationsService, private weatherDataService: WeatherDataService,) { }
-
+  constructor() {
+    this.cityForm = new FormGroup({
+      city: this.cityControl
+    });
+    this.cityForm.controls['city']!.setValue(this.default, {onlySelf: true});
+    this.cityForm.get('city')!.valueChanges.subscribe((e) => {
+      this.cities.find((value) => {
+        if(value.name === e) {
+          this.city = value;
+          this.updateParams()
+        }
+      } )
+    });
+  }
 
   getCardValue(value: string, data: Weather) {
     let cardValue = '';
@@ -99,14 +129,13 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading = true;
+    console.log('city here!!!:', this.city);
     this.subscription = this.weatherConfigurationsService.weatherConfigSource$.pipe(
       switchMap((config) => {
         return combineLatest([of(config), this.weatherData$])
       }),
       tap(([config, data]) => {
-        // console.log('config view: ', config);
-        // console.log('data view: ', data);
-        // console.log('Localstorage works: ', );
         const cards = [];
         for (let key in config) {
           if(config[key]) {
@@ -121,6 +150,7 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
 
         this.cards = [...cards];
         console.log('cards: ', this.cards);
+        this.loading = false;
       }),
     ).subscribe((weatherConfig) => {
       this.weatherConfig = weatherConfig[0];
@@ -130,6 +160,8 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
 
 }
 

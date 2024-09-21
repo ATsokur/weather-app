@@ -1,0 +1,38 @@
+.configuration__section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+  margin-bottom: 1em;
+}
+
+.mat-mdc-checkbox.mat-primary {
+  --mat-checkbox-label-text-color: rgb(245, 245, 220, 0.9);
+}
+/* Select styles */
+.select__container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+:host::ng-deep .mat-mdc-text-field-wrapper {
+  --mdc-filled-text-field-container-color: rgb(112, 141, 171);
+}
+
+:host::ng-deep .mat-mdc-select-min-line {
+  color: rgb(245, 245, 220, 0.9);
+}
+
+
+.select__city__label {
+  color: rgb(245, 245, 220, 0.6);
+}
+
+div.mat-mdc-select-panel#mat-select-0-panel {
+  --mat-select-panel-background-color: rgb(112, 141, 171);
+}
+
+
+
+
+
+

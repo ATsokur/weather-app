@@ -19,9 +19,8 @@ export class WeatherConfigurationsService {
     wind_speed: false,
   }
 
-
   public weatherConfigSource$: BehaviorSubject<WeatherConfigurations> = new BehaviorSubject(
-    this.storageService.isConfigAvailable() ? this.storageService.getUserSettings() : this.defaultWeatherConfiguration
+    this.storageService.isConfigAvailable() ? this.storageService.getUserCheckboxSettings() : this.defaultWeatherConfiguration
   );
 
   constructor() { }

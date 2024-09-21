@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
@@ -18,7 +18,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { WeatherConfigurationsComponent } from './weather-configurations/weather-configurations.component';
 import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-welcome-screen.component';
 import { WeatherViewComponent } from './weather-view/weather-view.component';
-import { WeatherConfigurationsCheckboxComponent } from './weather-configurations-checkbox/weather-configurations-checkbox.component';
+import { LoadingComponent } from './loading/loading.component';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
+import { SelectComponent } from './select/select.component';
 
 
 
@@ -32,7 +34,9 @@ import { WeatherConfigurationsCheckboxComponent } from './weather-configurations
     WeatherConfigurationsComponent,
     WeatherWelcomeScreenComponent,
     WeatherViewComponent,
-    WeatherConfigurationsCheckboxComponent,
+    LoadingComponent,
+    ToggleButtonComponent,
+    SelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { WeatherConfigurationsCheckboxComponent } from './weather-configurations
     MatButtonModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

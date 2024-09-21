@@ -1,0 +1,13 @@
+<form [formGroup]="formGroup" class="select__container">
+  <div class="select__form">
+    <h4 class="select__header">Выберите город</h4>
+    <mat-form-field class="select__city__field">
+      <mat-label class="select__city__label">Города</mat-label>
+      <mat-select [formControl]="formControl">
+        @for (element of array; track element) {
+          <mat-option [value]="element.name">{{element.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

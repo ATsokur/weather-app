@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeatherConfigurationsComponent } from './weather-configurations.component';
+import { WeatherConfigurationsComponent as WeatherConfigurationsComponent } from './weather-configurations.component';
 
-describe('WeatherConfigurationsComponent', () => {
+describe('WeatherConfigurationsCheckboxComponent', () => {
   let component: WeatherConfigurationsComponent;
   let fixture: ComponentFixture<WeatherConfigurationsComponent>;
 

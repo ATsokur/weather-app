@@ -1,6 +1,5 @@
 .container {
   margin: 0 auto;
-  width: 720px;
   min-height: 100%;
   background-color: #4d99e7;
   background-image: linear-gradient(rgba(34, 28, 28, 0.3), rgba(0, 0, 0, 0.7)), url("../assets/background.jpg");
@@ -15,7 +14,6 @@ h1 {
 .navigation {
   padding-top: 10px;
   padding-bottom: 10px;
-  /* background-color:beige; */
   background-color:rgba(0, 0, 0, 0.3);
 }
 

@@ -1,11 +1,14 @@
-.view__cards__container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+.view__container {
+  min-height: 50vh;
 }
 
 .select__container {
-  min-width: 305px;
+  display: flex;
+  justify-content: center;
+}
+
+.select__header {
+  text-align: center;
 }
 
 :host::ng-deep .mat-mdc-text-field-wrapper {
@@ -24,6 +27,21 @@
 div.mat-mdc-select-panel#mat-select-0-panel {
   --mat-select-panel-background-color: rgb(112, 141, 171);
 }
+
+.weather__card__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 12px
+}
+
+.loading__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: inherit;
+}
+
 
 
 

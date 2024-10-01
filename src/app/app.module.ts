@@ -20,7 +20,10 @@ import { WeatherWelcomeScreenComponent } from './weather-welcome-screen/weather-
 import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
-import { SelectComponent } from './select/select.component';
+import { FlatButtonComponent } from './flat-button/flat-button.component';
+import { LoginComponent } from './login/login.component';
+
+
 
 
 
@@ -36,7 +39,8 @@ import { SelectComponent } from './select/select.component';
     WeatherViewComponent,
     LoadingComponent,
     ToggleButtonComponent,
-    SelectComponent,
+    FlatButtonComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

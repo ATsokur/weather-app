@@ -13,6 +13,7 @@ import { WeatherConfigurations } from '../interfaces/weather-configurations';
 import { StorageService } from '../services/storage.service';
 import { City } from '../interfaces/city';
 import { CITIES } from '../services/weather-data.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-weather-configurations',
@@ -27,6 +28,7 @@ export class WeatherConfigurationsComponent implements OnInit, OnDestroy {
     WeatherConfigurationsService
   );
   private storageService = inject(StorageService);
+  public authenticationService = inject(AuthenticationService);
   public isEnabledSaveSettingsButton: boolean = true;
   public form: FormGroup;
   private destroyed$: Subject<void> = new Subject();
@@ -42,6 +44,7 @@ export class WeatherConfigurationsComponent implements OnInit, OnDestroy {
     weatherParams: WeatherConfigurations | null;
     cityId: string;
   };
+
 
   constructor() {}
 

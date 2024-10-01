@@ -1,0 +1,151 @@
+.router__outlet__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column-reverse;
+  padding: 12px 24px;
+}
+
+.authentication__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.authentication__form {
+  width: 420px;
+  color: rgb(245, 245, 220, 0.9);
+  padding: 30px 40px;
+  background-color: transparent;
+  background-color: rgb(44, 79, 117);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid rgb(245, 245, 220, 0.3);
+}
+
+.authentication__form h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.authentication__error {
+  padding: 10px;
+  text-align: center;
+  color: rgb(228, 130, 130);
+  border: 1px solid rgb(189, 19, 19);
+  border-radius: 10px;
+  background-color: rgba(255, 0, 0, 0.24);
+}
+
+.authentication__form__field {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  margin: 20px 0;
+  position: relative;
+}
+
+:host::ng-deep .authentication__form__field .mdc-text-field--filled {
+  background-color: transparent;
+}
+
+:host::ng-deep .authentication__form__field input.mat-mdc-input-element {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: rgb(245, 245, 220, 0.9);
+}
+
+:host::ng-deep .authentication__form__field input.mat-mdc-input-element::placeholder {
+  color: rgb(245, 245, 220, 0.5);
+}
+
+:host::ng-deep .authentication__form__field .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
+  background-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-hover-label-text-color:  rgb(245, 245, 220, 0.9);;
+  border-radius: 40px;
+  border-bottom-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-hover-active-indicator-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form__field .mat-mdc-form-field-required-marker {
+  color: rgb(211, 8, 8);
+}
+
+:host::ng-deep .authentication__form__field .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled:hover {
+  border-bottom-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form .mat-mdc-text-field-wrapper {
+  --mdc-filled-text-field-error-active-indicator-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-focus-active-indicator-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-hover-active-indicator-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-caret-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-focus-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-hover-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-focus-outline-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-hover-outline-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-outline-color: rgb(115, 145, 179);
+  --mat-form-field-error-text-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before{
+  border-bottom-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  border-bottom-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form .mat-mdc-form-field-infix{
+  --mdc-filled-text-field-error-active-indicator-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-focus-active-indicator-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-hover-active-indicator-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-focus-label-text-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-label-text-color: rgb(115, 145, 179);
+  --mdc-filled-text-field-error-caret-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-caret-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-focus-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-hover-label-text-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-focus-outline-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-hover-outline-color: rgb(115, 145, 179);
+  --mdc-outlined-text-field-error-outline-color: rgb(115, 145, 179);
+  --mat-form-field-error-text-color: rgb(115, 145, 179);
+}
+
+:host::ng-deep .authentication__form .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: rgb(245, 245, 220, 0.9);
+}
+:host::ng-deep .authentication__form .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--invalid .mdc-floating-label {
+  color: rgb(245, 245, 220, 0.9);
+  --mdc-filled-text-field-error-focus-label-text-color: #fff;
+}
+
+.authentication__form__field img {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 5px;
+  transform: translateY(-50%);
+  filter: invert(89%) sepia(29%) saturate(120%) hue-rotate(19deg) brightness(105%) contrast(92%);
+}
+
+.authentication__form__field img:hover {
+  filter: brightness(0) saturate(100%) invert(98%) sepia(0%) saturate(9%) hue-rotate(5deg) brightness(114%) contrast(98%);
+}
+
+.authentication__error::before {
+  color: red;
+}
+
+:host::ng-deep .authentication__form .mat-mdc-unelevated-button {
+  width: 30%;
+  height: 40px;
+  --mdc-filled-button-label-text-color: rgb(245, 245, 220, 0.9);
+  background-color: rgb(115, 145, 179);
+  border-radius: 40px;
+  font-size: 16px;
+}

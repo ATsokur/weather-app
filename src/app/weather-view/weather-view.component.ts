@@ -8,8 +8,8 @@ import { WeatherParams } from '../interfaces/weather-params';
 import { Weather } from '../interfaces/weather';
 import { StorageService } from '../services/storage.service';
 import { FormControl, FormGroup } from '@angular/forms';
-// import { FormControl, FormBuilder, Validators } from '@angular/forms';
-// import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-weather-view',
@@ -54,22 +54,13 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
   }
 
   public city: City = this.storageService.getUserSelectSettings() ? this.storageService.getUserSelectSettings() : CITIES[0] as City;
-  // public city: City = CITIES[0] as City;
-  // public default: string = CITIES[0]!.name;
   public default: string = this.city.name;
   public cityForm: FormGroup;
   public cityControl: FormControl = new FormControl(null);
-  // public cityControl = new FormControl(null);
-     //  public city: City = CITIES[0] as City;
   public cities: City[] = CITIES;
   public weatherParams$: Subject<WeatherParams> = new Subject();
   public loading: boolean = false;
-
-  // public cityForm = new FormGroup({
-  //   city: this.cityControl,
-  // });
-  /* test */
-
+  public authenticationService = inject(AuthenticationService);
 
   public weatherData$: Observable<Weather> = this.weatherParams$.pipe(
     startWith((new WEATHER_DEFAULT(this.city.latitude, this.city.longitude)).getDefaultParams()),
@@ -77,7 +68,6 @@ export class WeatherViewComponent implements OnInit, OnDestroy {
       return this.weatherDataService.getWeatherData(params)
     })
   );
-
 
   updateParams() {
     const params: WeatherParams = {

@@ -8,7 +8,7 @@
 .mat-mdc-checkbox.mat-primary {
   --mat-checkbox-label-text-color: rgb(245, 245, 220, 0.9);
 }
-/* Select styles */
+
 .select__container {
   display: flex;
   justify-content: flex-start;

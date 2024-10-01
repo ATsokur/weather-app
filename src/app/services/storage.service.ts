@@ -3,6 +3,8 @@ import { WeatherConfigurations } from '../interfaces/weather-configurations';
 import { City } from '../interfaces/city';
 import { CITIES } from './weather-data.service';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +12,7 @@ export class StorageService {
 
   private userCheckboxStorageData: string = 'user-checkbox-storage-data';
   private userSelectCityStorageData: string = 'user-select-city-storage-data';
+  private authenticationStorageData: string = 'isLoggedIn';
 
 
   constructor() { }
@@ -24,6 +27,10 @@ export class StorageService {
 
   setUserSelectSettings(data: City) {
     localStorage.setItem(this.userSelectCityStorageData, JSON.stringify(data));
+  }
+
+  setAuthenticationData() {
+    localStorage.setItem(this.authenticationStorageData, '1');
   }
 
   getSavedCity() {
@@ -44,6 +51,11 @@ export class StorageService {
     }
   }
 
+  getAuthenticationData() {
+    let data = localStorage.getItem(this.authenticationStorageData);
+    return data;
+  }
+
   clearUserCheckboxSettings() {
     localStorage.removeItem(this.userCheckboxStorageData);
   }
@@ -51,6 +63,11 @@ export class StorageService {
   clearUserSelectSettings() {
     localStorage.removeItem(this.userSelectCityStorageData);
   }
+
+  clearAuthenticationData() {
+    localStorage.removeItem(this.authenticationStorageData);
+  }
+
 
   cleanAll() {
     localStorage.clear()

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Weather } from '../interfaces/weather';
@@ -117,8 +117,9 @@ export class WEATHER_DEFAULT {
 export class WeatherDataService {
   private baseUrl: string = 'https://api.open-meteo.com/v1/forecast';
   public city: string = 'Краснодар';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getWeatherData(params: WeatherParams): Observable<Weather> {
     return this.http.get<Weather>(`${this.baseUrl}?latitude=${params.latitude}&longitude=${params.longitude}&current=${params.current.temperature},${params.current.relative_humidity},${params.current.apparent_temperature},${params.current.is_day},${params.current.wind_speed}&timezone=${params.timezone}`);

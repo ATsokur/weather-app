@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-weather-welcome-screen',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './weather-welcome-screen.component.css'
 })
 export class WeatherWelcomeScreenComponent {
-
+  public authenticationService = inject(AuthenticationService);
+  public readonly userName: string = this.authenticationService.getUserName();
 }

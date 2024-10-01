@@ -1,28 +1,26 @@
-<h4 class="configuration__header">Выберете необходимые настройки:</h4>
-<section class="configuration__section" [formGroup]="form" *ngIf="form">
-  <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="temperature">Температура (2м)</mat-checkbox></p>
-  <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="relative_humidity">Относительная влажность (2м)</mat-checkbox></p>
-  <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="apparent_temperature">Ощущаемая температура</mat-checkbox></p>
-  <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="is_day">Время суток</mat-checkbox></p>
-  <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="wind_speed">Скорость ветра</mat-checkbox></p>
-</section>
-
-<form [formGroup]="cityForm"  class="select__container">
-  <div class="select__form">
-    <h4 class="select__header">Выберите город по умолчанию:</h4>
-    <mat-form-field class="select__city__field">
-      <mat-label class="select__city__label">Города</mat-label>
-      <mat-select [formControl]="cityControl">
-        @for (city of cities; track city) {
-          <mat-option [value]="city.name">{{city.name}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </div>
-</form>
-
-
-<app-toggle-button (toggleChangeEvent)="toSaveSettings()"  [toggleValue]="!isEnabledSaveSettingsButton"></app-toggle-button>
-
+<div class="configuration__wrapper">
+  <h4 class="configuration__header">Выберете необходимые настройки:</h4>
+  <section class="configuration__section" [formGroup]="form" *ngIf="form">
+    <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="temperature">Температура (2м)</mat-checkbox></p>
+    <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="relative_humidity">Относительная влажность (2м)</mat-checkbox></p>
+    <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="apparent_temperature">Ощущаемая температура</mat-checkbox></p>
+    <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="is_day">Время суток</mat-checkbox></p>
+    <p><mat-checkbox class="configuration__checkbox" [color]="color" formControlName="wind_speed">Скорость ветра</mat-checkbox></p>
+  </section>
+  <form [formGroup]="cityForm"  class="select__container">
+    <div class="select__form">
+      <h4 class="select__header">Выберите город по умолчанию:</h4>
+      <mat-form-field class="select__city__field">
+        <mat-label class="select__city__label">Города</mat-label>
+        <mat-select [formControl]="cityControl">
+          @for (city of cities; track city) {
+            <mat-option [value]="city.name">{{city.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  <app-toggle-button (toggleChangeEvent)="toSaveSettings()"  [toggleValue]="!isEnabledSaveSettingsButton"></app-toggle-button>
+</div>
 
 

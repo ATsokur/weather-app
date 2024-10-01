@@ -1,20 +1,23 @@
 <div class="container">
-  <!-- <h1>{{title}}</h1> -->
-  <nav class="navigation">
-    <ul class="nav__bar">
-      <li class="navigation__button">
-        <a class="nav__link" mat-button routerLink="/welcome" routerLinkActive="active-link">Главная</a>
-      </li>
-      <li class="navigation__button" >
-        <a class="nav__link" mat-button routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
-      </li>
-      <li class="navigation__button">
-        <a class="nav__link" mat-button routerLink="/weather" routerLinkActive="active-link">Погода</a>
-      </li>
-    </ul>
+    <nav *ngIf="authenticationService.isLogginIn$.value" class="navigation">
+    <div class="nav__bar__wrapper">
+      <ul class="nav__bar">
+        <li class="navigation__button">
+          <a class="nav__link" mat-button routerLink="/welcome" routerLinkActive="active-link">Главная</a>
+        </li>
+        <li class="navigation__button" >
+          <a class="nav__link" mat-button routerLink="/configurations" routerLinkActive="active-link">Настройки</a>
+        </li>
+        <li class="navigation__button">
+          <a class="nav__link" mat-button routerLink="/weather" routerLinkActive="active-link">Погода</a>
+        </li>
+      </ul>
+    </div>
+    <div class="authentication__container">
+      <button mat-button (click)="storageService.clearAuthenticationData()" (click)="this.authenticationService.isUserLoggedOut()" routerLink="/login" routerLinkActive="active-link">{{'Выход'}}</button>
+    </div>
   </nav>
-  <div class="router__outlet__container">
-    <router-outlet></router-outlet>
+  <div class="outlet-container">
+        <router-outlet></router-outlet>
   </div>
 </div>
-

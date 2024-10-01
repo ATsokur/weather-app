@@ -1,0 +1,23 @@
+<div class="authentication__container">
+  <div class="authentication__wrapper">
+    <form class="authentication__form" (ngSubmit)="toEnterInAccount()">
+      <h1>{{'Авторизация' | uppercase}}</h1>
+      <div *ngIf="hasAuthenticationError" class="authentication__error">
+        <h3>{{'Ошибка!'}}</h3>
+        <p>Неправильный логин или пароль.</p>
+      </div>
+        <mat-form-field class="authentication__form__field">
+          <mat-label>Логин</mat-label>
+          <input type="text" matInput [formControl]="loginControl" placeholder="Логин">
+          <img src="../assets/user.svg" alt="login">
+        </mat-form-field>
+        <mat-form-field class="authentication__form__field">
+          <mat-label>Пароль</mat-label>
+          <input type="password" matInput [formControl]="passwordControl" placeholder="Пароль">
+          <img src="../assets/locked.svg" alt="password">
+        </mat-form-field>
+      <app-flat-button type="submit" [text]="'Войти'"></app-flat-button>
+      <!-- <app-flat-button [text]="'Войти'" (click)="toEnterInAccount()" routerLink="/welcome" routerLinkActive="active-link"></app-flat-button> -->
+    </form>
+  </div>
+</div>

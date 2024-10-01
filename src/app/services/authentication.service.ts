@@ -27,7 +27,7 @@ export const USERS: User[] = [
   providedIn: 'root'
 })
 export class AuthenticationService {
-  public isLogginIn$ = new BehaviorSubject<boolean>(false); // enterUser
+  public isLogginIn$ = new BehaviorSubject<boolean>(false);
   private readonly storageService = inject(StorageService);
   private userName: string;
   private router = inject(Router);
@@ -42,13 +42,12 @@ export class AuthenticationService {
     if (this.storageService.getAuthenticationData()) {
         this.isLogginIn$.next(true);
         this.userName = USERS.find((el) => el['id'] === localStorage.getItem('id'))!.login;
-        this.router.navigate(['/welcome']);
     }
   }
 
   isUserLoggedIn(login: string, password: string) {
     let userLogin: string = USERS.find((el) => el['login'] === login)?.login as string;
-    let userPassword: string = USERS.find((el) => el['password'] === password)?.password as string; // делал голову ts
+    let userPassword: string = USERS.find((el) => el['password'] === password)?.password as string;
      userLogin && userPassword ? this.isLogginIn$.next(true) : this.isLogginIn$.next(false);
     if(this.isLogginIn$.value) {
       let userId: string = USERS.find((el) => el['login'] === userLogin)!.id;
@@ -62,7 +61,7 @@ export class AuthenticationService {
   }
 
   isUserLoggedOut() {
-    this.storageService.clearAuthenticationData();
+    this.storageService.cleanAll();
     localStorage.removeItem('id');
     this.isLogginIn$.next(false);
     this.router.navigate(['/login']);
